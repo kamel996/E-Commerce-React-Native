@@ -15,9 +15,10 @@ const handleQueryError = (err: any, res:Response) => {
 
 // get all products
 router.get('/products', async(req: Request, res: Response) => {
+  console.log('trying')
     try {
         const rows = await db.select().from(products);
-        return rows
+        res.json(rows);
     } catch (error) {
        handleQueryError(error, res)
     }
