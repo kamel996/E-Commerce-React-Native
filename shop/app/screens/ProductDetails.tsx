@@ -3,7 +3,7 @@ import { ProductDetailsPageProps } from '@/navigation/ProductsStack'
 import useCartStore from '@/state/cartStore';
 import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native/types';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 const ProductDetails = ({route} :ProductDetailsPageProps) => {

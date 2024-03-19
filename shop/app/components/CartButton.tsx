@@ -1,10 +1,13 @@
 import useCartStore from '@/state/cartStore';
 import { useNavigation } from '@react-navigation/native'
 import React, { useEffect, useState } from 'react'
-import { TouchableOpacity, View,Text, StyleSheet } from 'react-native/types';
+import { TouchableOpacity, View,Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { StackNavigation } from '@/navigation/ProductsStack';
+
+
 const CartButton = () => {
-    const navigation = useNavigation();
+    const navigation = useNavigation<StackNavigation>();
 
     const {products} = useCartStore((state) => ({
         products: state.products

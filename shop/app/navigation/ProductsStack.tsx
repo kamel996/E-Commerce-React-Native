@@ -4,6 +4,7 @@ import Products from '@/screens/Products';
 import ProductDetails from '@/screens/ProductDetails';
 import CartModal from '@/screens/CartModal';
 import CartButton from '@/components/CartButton';
+import { NavigationProp } from '@react-navigation/native';
 
 type ProductsStackParamList = {
   Products: undefined;
@@ -14,6 +15,7 @@ type ProductsStackParamList = {
 const ProductsStack = createNativeStackNavigator<ProductsStackParamList>();
 export type ProductsPageProps = NativeStackScreenProps<ProductsStackParamList, 'Products'>;
 export type ProductDetailsPageProps = NativeStackScreenProps<ProductsStackParamList, 'ProductDetails'>;
+export type StackNavigation = NavigationProp<ProductsStackParamList>;
 
 const ProductsStackNav = () => {
     return (
