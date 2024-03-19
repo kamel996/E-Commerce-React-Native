@@ -17,6 +17,7 @@ const handleQueryError = (err: any, res:Response) => {
 router.get('/products', async(req: Request, res: Response) => {
     try {
         const rows = await db.select().from(products);
+        return rows
     } catch (error) {
        handleQueryError(error, res)
     }
