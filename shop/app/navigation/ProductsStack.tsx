@@ -2,6 +2,8 @@ import {  NativeStackScreenProps, createNativeStackNavigator } from '@react-navi
 import React, { useEffect, useState } from 'react';
 import Products from '@/screens/Products';
 import ProductDetails from '@/screens/ProductDetails';
+import CartModal from '@/screens/CartModal';
+import CartButton from '@/components/CartButton';
 
 type ProductsStackParamList = {
   Products: undefined;
@@ -19,13 +21,21 @@ const ProductsStackNav = () => {
         headerStyle: {
             backgroundColor: '#1'
         },
-        headerTintColor: '#141414'
+        headerTintColor: '#141414',
+        headerRight: () => <CartButton />,
       }}>
        <ProductsStack.Screen name='Products' component={Products} options={{headerTitle: "TechTrek Shop"}} />
        <ProductsStack.Screen name='ProductDetails' component={ProductDetails} options={{headerTitle: ""}} />
+       <ProductsStack.Screen name='CartModal' component={CartModal} options={{
+        headerShown: false,
+        presentation: "modal"
+       }} />
       </ProductsStack.Navigator>
     );
   };
+  
+
+
   
 
 export default ProductsStackNav;

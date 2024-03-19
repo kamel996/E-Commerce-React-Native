@@ -3,7 +3,8 @@ import { ProductDetailsPageProps } from '@/navigation/ProductsStack'
 import useCartStore from '@/state/cartStore';
 import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Image, StyleSheet, Text } from 'react-native/types';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native/types';
+import { Ionicons } from '@expo/vector-icons';
 
 const ProductDetails = ({route} :ProductDetailsPageProps) => {
   const { id } = route.params;
@@ -18,30 +19,36 @@ const ProductDetails = ({route} :ProductDetailsPageProps) => {
   const [count, setCount] = useState(0);
 
 
-
   useEffect(() => {
-
-
-  }, [product])
-
-
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const productData = await fetchProductDetails(id);
-
-        setProduct(productData);
-
-      } catch (error) {
-        
-        console.log('error: ', error)
-      }
-    }
     fetchProduct();
   }, []);
 
 
-  
+  useEffect(() => {
+    updateProductQuantity();
+  }, [products]);
+
+
+  const fetchProduct = async () => {
+    try {
+      const productData = await fetchProductDetails(id);
+      setProduct(productData);
+    } catch (error) {
+      console.error('Error fetching product details:', error);
+    }
+  };
+
+
+
+  const updateProductQuantity = () => {
+    const foundProduct = products.find(p => id === p.id);
+
+    if(foundProduct){
+      setCount(foundProduct.quantity)
+    }else{
+      setCount(0)
+    }
+  }
 
 
   return (
@@ -53,6 +60,16 @@ const ProductDetails = ({route} :ProductDetailsPageProps) => {
           <Text style={styles.category}>{product.category}</Text>
           <Text style={styles.description}>{product.description}</Text>
           <Text style={styles.price}>{product.price}</Text>
+
+          <View style={styles.buttonsContainer}>
+            <TouchableOpacity style={styles.button} onPress={() => reduceProduct(product)}>
+              <Ionicons name="remove" size={24} color={'#1FE687'} />
+            </TouchableOpacity>
+            <Text style={styles.quantity}>{count}</Text>
+            <TouchableOpacity style={styles.button} onPress={() => addProduct(product)} >
+              <Ionicons name="add" size={24} />
+            </TouchableOpacity>
+          </View>
         </>
       )}
     
