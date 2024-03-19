@@ -1,6 +1,7 @@
 import {  NativeStackScreenProps, createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useEffect, useState } from 'react';
 import Products from '@/screens/Products';
+import ProductDetails from '@/screens/ProductDetails';
 
 type ProductsStackParamList = {
   Products: undefined;
@@ -21,6 +22,7 @@ const ProductsStackNav = () => {
         headerTintColor: '#141414'
       }}>
        <ProductsStack.Screen name='Products' component={Products} options={{headerTitle: "TechTrek Shop"}} />
+       <ProductsStack.Screen name='ProductDetails' component={ProductDetails} options={{headerTitle: ""}} />
       </ProductsStack.Navigator>
     );
   };
